@@ -3,7 +3,12 @@ import type QuizService from '../services/quiz.service.js';
 import type { CreateQuizInput } from '../schemas/quizzes/create.js';
 
 class QuizController {
-  constructor(private readonly quizService: QuizService) {}
+  constructor(
+    private readonly quizService: Pick<
+      QuizService,
+      'findAll' | 'find' | 'delete' | 'create'
+    >,
+  ) {}
 
   findAll = async (_req: Request, res: Response, next: NextFunction) => {
     try {

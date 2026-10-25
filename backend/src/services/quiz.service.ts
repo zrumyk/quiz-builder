@@ -3,7 +3,12 @@ import type { CreateQuizInput } from '../schemas/quizzes/create.js';
 import ApiError from '../exceptions/api.error.js';
 
 class QuizService {
-  constructor(private readonly quizRepository: QuizRepository) {}
+  constructor(
+    private readonly quizRepository: Pick<
+      QuizRepository,
+      'findAll' | 'findById' | 'delete' | 'create'
+    >,
+  ) {}
 
   async findAll() {
     const quizzes = await this.quizRepository.findAll();

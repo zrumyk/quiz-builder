@@ -1,5 +1,5 @@
-import type { PrismaClient } from "../generated/prisma/client.js";
-import type { CreateQuizInput } from "../schemas/quizzes/create.js";
+import type { PrismaClient } from '../generated/prisma/client.js';
+import type { CreateQuizInput } from '../schemas/quizzes/create.js';
 
 class QuizRepository {
   constructor(private readonly prisma: PrismaClient) {}
@@ -42,10 +42,11 @@ class QuizRepository {
             text: question.text,
             type: question.type,
             position,
-            booleanAnswer: question.type === "BOOLEAN" ? question.booleanAnswer : null,
-            textAnswer: question.type === "INPUT" ? question.textAnswer : null,
+            booleanAnswer:
+              question.type === 'BOOLEAN' ? question.booleanAnswer : null,
+            textAnswer: question.type === 'INPUT' ? question.textAnswer : null,
             options:
-              question.type === "CHECKBOX"
+              question.type === 'CHECKBOX'
                 ? {
                     create: question.options.map((option, optionPosition) => ({
                       text: option.text,
@@ -59,10 +60,10 @@ class QuizRepository {
       },
       include: {
         questions: {
-          orderBy: { position: "asc" },
+          orderBy: { position: 'asc' },
           include: {
             options: {
-              orderBy: { position: "asc" },
+              orderBy: { position: 'asc' },
             },
           },
         },

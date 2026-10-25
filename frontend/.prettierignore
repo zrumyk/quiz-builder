@@ -1,0 +1,4 @@
+node_modules/
+dist/
+src/globals.css
+package-lock.json

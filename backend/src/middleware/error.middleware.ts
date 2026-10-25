@@ -1,5 +1,6 @@
 import type { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
+import ApiError from '../exceptions/api.error.js';
 
 const errorMiddleware: ErrorRequestHandler = (
   error: unknown,
@@ -9,6 +10,14 @@ const errorMiddleware: ErrorRequestHandler = (
 ) => {
   if (res.headersSent) {
     next(error);
+    return;
+  }
+
+  if (error instanceof ApiError) {
+    res.status(error.status).json({
+      success: false,
+      message: error.message,
+    });
     return;
   }
 

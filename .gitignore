@@ -1,15 +1,56 @@
+# Dependencies
 node_modules/
-dist/
-coverage/
-*.log
 
+# Build output
+dist/
+dist-ssr/
+build/
+*.tsbuildinfo
+
+# Environment variables and local overrides
 .env
 .env.*
 !.env.example
+*.local
 
-backend/src/generated/
+# Generated Prisma Client
+/backend/src/generated/prisma/
 
+# Local AI assistant files
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Test results and coverage
+coverage/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# Tool caches
+.vite/
+.cache/
+.npm/
+.eslintcache
+.prettiercache
+
+# Logs
+logs/
+*.log
+
+# Editors
 .vscode/
 .idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# Operating system files
 .DS_Store
 Thumbs.db
+Desktop.ini
